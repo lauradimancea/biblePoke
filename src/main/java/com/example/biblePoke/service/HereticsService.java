@@ -1,5 +1,6 @@
 package com.example.biblePoke.service;
 
+import com.example.biblePoke.model.PokemonAndAbility;
 import com.example.biblePoke.model.ReligiousPokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ public class HereticsService {
     public ReligiousPokemon getRandomPokemon() {
 
         String verse = bibleClient.getVerse();
-        String pokemon = pokemonClient.getPokemon();
-        return new ReligiousPokemon(pokemon, verse);
+        PokemonAndAbility pokemon = pokemonClient.getPokemon();
+        String name = pokemon.getName();
+        String ability = pokemon.getAbility();
+        return new ReligiousPokemon(name, ability, verse);
     }
 }

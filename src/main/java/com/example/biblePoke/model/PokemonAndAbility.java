@@ -5,9 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ReligiousPokemon {
+public class PokemonAndAbility {
 
     private String name;
     private String ability;
-    private String lifeAdvice;
 }
