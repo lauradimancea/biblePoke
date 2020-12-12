@@ -3,10 +3,12 @@ package com.example.biblePoke.service;
 import com.example.biblePoke.model.ResponseBodyPokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Random;
 
+@Service
 public class PokemonClient {
 
     private static final String POKEMON_URL = "https://pokeapi.co/api/v2/pokemon/?offset=%s&limit=1";

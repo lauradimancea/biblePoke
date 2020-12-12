@@ -1,7 +1,7 @@
 package com.example.biblePoke.controller;
 
-import com.example.biblePoke.service.BibleClient;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.biblePoke.model.ReligiousPokemon;
+import com.example.biblePoke.service.HereticsService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HereticsController {
 
-    private final BibleClient bibleClient;
+    private final HereticsService hereticsService;
 
-    public HereticsController(BibleClient bibleClient) {
-        this.bibleClient = bibleClient;
+    public HereticsController(HereticsService hereticsService) {
+        this.hereticsService = hereticsService;
     }
 
-    @GetMapping(path = "/test")
-    public HttpEntity<String> test() throws JsonProcessingException {
-        return ResponseEntity.ok(bibleClient.getVerse());
+    @GetMapping(path = "/pokemon", produces = "application/json")
+    public HttpEntity<ReligiousPokemon> getReligiousPokemon() {
+        return ResponseEntity.ok(hereticsService.getRandomPokemon());
     }
 }

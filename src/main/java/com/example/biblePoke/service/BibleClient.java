@@ -1,6 +1,7 @@
 package com.example.biblePoke.service;
 
 import com.example.biblePoke.model.ResponseBodyBible;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -34,7 +35,8 @@ public class BibleClient {
         }
 
         try {
-            return responseEntity.getBody().getData().getContent();
+            String response = responseEntity.getBody().getData().getContent();
+            return html2text(response);
         } catch (Exception e) {
             return "Could not parse response";
         }
@@ -53,5 +55,9 @@ public class BibleClient {
         int second = random.nextInt(11 - 1) + 1;
 
         return first + "." + second;
+    }
+
+    public static String html2text(String html) {
+        return Jsoup.parse(html).text();
     }
 }
