@@ -1,8 +1,6 @@
 package com.example.biblePoke.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.biblePoke.model.ResponseBodyBible;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,9 +26,7 @@ public class BibleClient {
     }
 
     public String getVerse() {
-        ObjectMapper mapper = new ObjectMapper();
-        ResponseEntity<String> responseEntity;
-
+        ResponseEntity<ResponseBodyBible> responseEntity;
         try {
              responseEntity = getBibleResponse();
         } catch (Exception e) {
@@ -38,18 +34,16 @@ public class BibleClient {
         }
 
         try {
-            JsonNode root = mapper.readTree(responseEntity.getBody());
-            JsonNode name = root.path("data").get("content");
-            return name.toString();
+            return responseEntity.getBody().getData().getContent();
         } catch (Exception e) {
             return "Could not parse response";
         }
     }
 
-    public ResponseEntity<String> getBibleResponse() {
+    public ResponseEntity<ResponseBodyBible> getBibleResponse() {
 
         return restTemplate.exchange(BIBLE_URL_VERSE + generateRandomVerse(),
-                HttpMethod.GET, new HttpEntity<String>(httpHeaders), String.class);
+                HttpMethod.GET, new HttpEntity<String>(httpHeaders), ResponseBodyBible.class);
     }
 
     private String generateRandomVerse() {
