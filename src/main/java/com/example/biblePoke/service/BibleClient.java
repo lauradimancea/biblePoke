@@ -27,18 +27,14 @@ public class BibleClient {
     }
 
     public String getVerse() {
+
         ResponseEntity<ResponseBodyBible> responseEntity;
         try {
              responseEntity = getBibleResponse();
+            String response = responseEntity.getBody().getData().getContent().replaceAll("[\\d.]", "");
+            return html2text(response);
         } catch (Exception e) {
             return "The requested verse does not exist";
-        }
-
-        try {
-            String response = responseEntity.getBody().getData().getContent();
-            return html2text(response).replaceAll("[\\d.]", "");
-        } catch (Exception e) {
-            return "Could not parse response";
         }
     }
 
@@ -57,7 +53,7 @@ public class BibleClient {
         return first + "." + second;
     }
 
-    public static String html2text(String html) {
+    private static String html2text(String html) {
         return Jsoup.parse(html).text();
     }
 }

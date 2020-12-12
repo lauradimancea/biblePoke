@@ -13,7 +13,6 @@ public class PokemonClient {
 
     private static final String POKEMON_URL = "https://pokeapi.co/api/v2/pokemon/?offset=%s&limit=1";
 
-
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -36,6 +35,7 @@ public class PokemonClient {
 
         return restTemplate.getForEntity(String.format(POKEMON_URL,generateRandomNumber()), ResponseBodyPokemon.class);
     }
+
     private int generateRandomNumber(){
         Random random = new Random();
 
