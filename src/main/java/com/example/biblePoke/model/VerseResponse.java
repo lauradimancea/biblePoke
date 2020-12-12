@@ -11,9 +11,4 @@ public class VerseResponse {
     private String bibleId;
     private String reference;
     private String content;
-    private String verseCount;
-    private String copyright;
-    private NextVerse nextVerse;
-    private PreviousVerse previousVerse;
-    private MetaVerse metaVerse;
 }
