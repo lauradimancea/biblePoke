@@ -36,7 +36,7 @@ public class BibleClient {
 
         try {
             String response = responseEntity.getBody().getData().getContent();
-            return html2text(response);
+            return html2text(response).replaceAll("[\\d.]", "");
         } catch (Exception e) {
             return "Could not parse response";
         }
