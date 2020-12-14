@@ -10,4 +10,7 @@ public class ResponseBodyPokemon {
     private String next;
     private String previous;
     private List<Pokemon> results;
+
+
+
 }

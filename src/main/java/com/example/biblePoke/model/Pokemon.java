@@ -6,4 +6,5 @@ import lombok.Getter;
 public class Pokemon {
     private String name;
     private String url;
+
 }
