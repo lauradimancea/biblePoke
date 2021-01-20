@@ -24,6 +24,9 @@ public class PokemonData {
     @Column
     private String pokemonAbility;
 
+    @OneToOne(mappedBy = "pokemonData")
+    private PokemonAdvice pokemonAdvice;
+
     public PokemonData(String pokemonName, String pokemonAbility) {
         this.pokemonName = pokemonName;
         this.pokemonAbility = pokemonAbility;
