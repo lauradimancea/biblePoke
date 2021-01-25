@@ -4,6 +4,7 @@ import com.example.biblePoke.model.CreateAccountRequest;
 import com.example.biblePoke.service.CreateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class CreateAccountController {
     public CreateAccountController(CreateAccountService createAccountService){
         this.createAccountService = createAccountService;
     }
-    @PostMapping(path = "/account")
+    @PostMapping(path = "/account", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<String> createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest){
 
         createAccountService.createAccount(createAccountRequest);
